@@ -12,7 +12,7 @@ const Root = () => {
             <Header></Header>
             <Container>
                 <Row>
-                    <Col lg="2">
+                    <Col lg="2" className='d-none d-lg-block'>
                         <LeaftNav></LeaftNav>
                     </Col>
                     <Col lg="7">
