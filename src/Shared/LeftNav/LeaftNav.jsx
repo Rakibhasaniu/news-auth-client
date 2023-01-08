@@ -10,7 +10,7 @@ const LeaftNav = () => {
             .then(data => setCategories(data))
     }, [])
     return (
-        <div>
+        <div className='text-start'>
             <h2>All Category: {categories.length}</h2>
             <div>
                 {categories.map(category => <p key={category.id}>
