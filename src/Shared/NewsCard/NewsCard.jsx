@@ -2,28 +2,28 @@ import React from 'react';
 import Image from 'react-bootstrap/Image'
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
-import { FaRegBookmark, FaShareAltSquare } from "react-icons/fa";
+import { FaEye, FaRegBookmark, FaShareAltSquare, FaStar } from "react-icons/fa";
 
 
 const NewsCard = ({ news }) => {
-    const { title, _id, total_view, author, details, image_url } = news;
+    const { title, _id, total_view, author, details, image_url, rating } = news;
     return (
-        <Card className="">
+        <Card className="mb-3">
             <Card.Header className='d-flex justify-content-between align-items-center'>
                 <div className='d-flex'>
                     <Image
                         className='me-2'
                         roundedCircle
-                        src={author.img}
+                        src={author?.img}
                         style={{ height: '60px' }}
                     ></Image>
                     <div>
-                        <p>{author.name}</p>
-                        <p>{author.published_date}</p>
+                        <p className='mb-0'>{author?.name}</p>
+                        <p>{author?.published_date}</p>
                     </div>
                 </div>
-                <div className='ms-5'>
-                    <FaRegBookmark></FaRegBookmark>
+                <div className=''>
+                    <FaRegBookmark className='me-3'></FaRegBookmark>
                     <FaShareAltSquare></FaShareAltSquare>
                 </div>
             </Card.Header>
@@ -40,7 +40,16 @@ const NewsCard = ({ news }) => {
                 </Card.Text>
 
             </Card.Body>
-            <Card.Footer className="text-muted">2 days ago</Card.Footer>
+            <Card.Footer className="d-flex justify-content-between ">
+                <div>
+                    <FaStar className='text-warning me-2'></FaStar>
+                    <span>{rating?.number}</span>
+                </div>
+                <div>
+                    <FaEye className='me-2'></FaEye>
+                    <span>{total_view}</span>
+                </div>
+            </Card.Footer>
         </Card >
     );
 };
