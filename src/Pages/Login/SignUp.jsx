@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const SignUp = () => {
     const { createUser } = useContext(AuthContext);
-
+    const [error, setError] = useState('');
 
     const handleSignUp = (e) => {
         e.preventDefault();
@@ -19,9 +19,13 @@ const SignUp = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
+                setError('');
                 form.reset();
             })
-            .catch(error => console.error(error))
+            .catch(error => {
+                console.error(error)
+                setError(error.message);
+            })
     }
     return (
         <Form onSubmit={handleSignUp}>
@@ -33,16 +37,16 @@ const SignUp = () => {
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control name='email' type="email" placeholder="Enter email" required />
-                <Form.Text className="text-muted">
 
-                </Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control name='password' type="password" placeholder="Password" required />
             </Form.Group>
-
+            <Form.Text className="text-muted">
+                {error}
+            </Form.Text>
             <Button variant="primary" type="submit">
                 Submit
             </Button>
