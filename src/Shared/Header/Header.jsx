@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Image } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { FaUser } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import LeaftNav from '../LeftNav/LeaftNav';
 
 const Header = () => {
+    const { user, logOut } = useContext(AuthContext);
+    const handlerLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.error(error))
+    }
     return (
         <Navbar collapseOnSelect className='mb-4' expand="lg" bg="light" variant="light">
             <Container>
@@ -29,9 +38,28 @@ const Header = () => {
                         </NavDropdown>
                     </Nav>
                     <Nav>
-                        <Nav.Link href="#deets">More deets</Nav.Link>
+                        <Nav.Link href="#deets">
+                            {
+                                user.uid ?
+                                    <>
+                                        <span>{user?.displayName}</span>
+                                        <button onClick={handlerLogOut}>Logout</button>
+                                    </>
+
+                                    :
+                                    <>
+                                        <Link to='/login'>Login</Link>
+                                        <Link to='/signup'>Sign Up</Link>
+                                    </>
+                            }
+
+                        </Nav.Link>
                         <Nav.Link eventKey={2} href="#memes">
-                            Dank memes
+                            {/* {user.photoURL ?
+                                <Image style={{ height: '40px' }} roundedCircle src={user.photoURL}></Image>
+                                :
+                                <FaUser></FaUser>
+                            } */}
                         </Nav.Link>
                     </Nav>
                     <div className='d-lg-none'>

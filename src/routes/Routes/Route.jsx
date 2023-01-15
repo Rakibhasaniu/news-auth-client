@@ -3,6 +3,8 @@ import Root from "../../layotu/Root";
 import Category from "../../Pages/Home/Category/Category";
 import Home from "../../Pages/Home/Home/Home/Home";
 import News from "../../Pages/Home/News/News";
+import Login from "../../Pages/Login/Login";
+import SignUp from "../../Pages/Login/SignUp";
 
 
 
@@ -26,6 +28,14 @@ export const routes = createBrowserRouter([
                 element: <News></News>,
                 loader: ({ params }) => fetch(`http://localhost:5000/news/${params.id}`)
             },
+            {
+                path: '/login',
+                element: <Login></Login>
+            },
+            {
+                path: '/signup',
+                element: <SignUp></SignUp>
+            }
         ]
     }
 ])
