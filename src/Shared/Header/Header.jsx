@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Image } from 'react-bootstrap';
+import { Button, Image } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -39,27 +39,29 @@ const Header = () => {
                     </Nav>
                     <Nav>
                         <Nav.Link href="#deets">
+
                             {
-                                user.uid ?
+                                user?.uid ?
                                     <>
                                         <span>{user?.displayName}</span>
-                                        <button onClick={handlerLogOut}>Logout</button>
-                                    </>
+                                        <Button onClick={handlerLogOut}>Log Out</Button>
 
+                                    </>
                                     :
                                     <>
-                                        <Link to='/login'>Login</Link>
-                                        <Link to='/signup'>Sign Up</Link>
+                                        <Button className='me-4'> <Link className='text-white ' to='/login'>Login</Link></Button>
+                                        <Button><Link className='text-white' to='/signup'>SignUp</Link></Button>
+
                                     </>
                             }
 
                         </Nav.Link>
                         <Nav.Link eventKey={2} href="#memes">
-                            {/* {user.photoURL ?
+                            {user?.photoURL ?
                                 <Image style={{ height: '40px' }} roundedCircle src={user.photoURL}></Image>
                                 :
                                 <FaUser></FaUser>
-                            } */}
+                            }
                         </Nav.Link>
                     </Nav>
                     <div className='d-lg-none'>
