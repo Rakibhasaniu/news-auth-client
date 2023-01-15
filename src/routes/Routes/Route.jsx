@@ -5,6 +5,7 @@ import Home from "../../Pages/Home/Home/Home/Home";
 import News from "../../Pages/Home/News/News";
 import Login from "../../Pages/Login/Login";
 import SignUp from "../../Pages/Login/SignUp";
+import Terms from "../../Pages/Others/Terms/Terms";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 
@@ -36,6 +37,10 @@ export const routes = createBrowserRouter([
             {
                 path: '/signup',
                 element: <SignUp></SignUp>
+            },
+            {
+                path: '/terms',
+                element: <Terms></Terms>
             }
         ]
     }
